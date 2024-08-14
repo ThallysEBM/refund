@@ -5,6 +5,8 @@ const category = document.getElementById("category")
 
 const expenseList = document.querySelector("ul")
 
+
+// Captura o evento de input 
 amount.oninput = () => {
     let value = amount.value.replace(/\D/g, "")
 
@@ -44,7 +46,7 @@ function expenseAdd(newExpense) {
     try {
         const expenseItem = document.createElement("li")
         expenseItem.classList.add("expense")
-        
+
         // Cria icone da categoria
         const expenseIcon = document.createElement("img")
         expenseIcon.setAttribute("src", `img/${newExpense.category_id}.svg`)
@@ -52,8 +54,22 @@ function expenseAdd(newExpense) {
 
         // Cria a info da despesa.
 
+        const expenseInfo = document.createElement("div")
+        expenseInfo.classList.add("expense-info")
+
+
+        // Cria o nome da despesa
+        const expenseName = document.createElement("strong")
+        expenseName.textContent = newExpense.expense
+
+        // Cria a categoria da depesa
+        const expenseCategory = document.createElement("span")
+        expenseCategory.textContent = newExpense.category_name
+
+        // Adiciona nome e categoria na div das informações da despesa
+        expenseInfo.append(expenseName, expenseCategory)
         // Adiciona as informações no item
-        expenseItem.append(expenseIcon)
+        expenseItem.append(expenseIcon, expenseInfo)
         // Adiciona o item na lista
         expenseList.append(expenseItem)
 
